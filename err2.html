@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Диагностика подключения</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #e0f7fa, #80deea);
+            color: #004085;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            background-color: #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .info-section {
+            margin-top: 50px;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-container .btn {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn-container .btn:hover {
+            transform: scale(1.05);
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!-- Навбар -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Интерактивное электронное техническое руководство для системы безопастности
+            мастерской</a>
+    </div>
+</nav>
+
+<div class="container text-center btn-container">
+    <h1>Диагностика подключения</h1>
+    <div id="question1">
+        <p>Стабильно ли подключение?</p>
+        <button class="btn btn-primary btn-lg" onclick="handleYes()">Да</button>
+        <button class="btn btn-primary btn-lg" onclick="handleNo()">Нет</button>
+    </div>
+
+    <div id="answerYes" class="hidden">
+        <p>Перезапустить систему для восстановления работы.</p>
+        <button class="btn btn-primary btn-lg" onclick="nextStep()">Далее</button>
+    </div>
+
+    <div id="answerNo" class="hidden">
+        <p>Проверить состояние кабелей и соединений.</p>
+        <button class="btn btn-primary btn-lg" onclick="nextStep()">Далее</button>
+    </div>
+
+    <div id="question2" class="hidden">
+        <p>Проблема решена?</p>
+        <button class="btn btn-primary btn-lg" onclick="handleYes2()">Да</button>
+        <button class="btn btn-primary btn-lg" onclick="handleNo2()">Нет</button>
+    </div>
+
+    <div id="answerYes2" class="hidden">
+        <p>Проблема решена.</p>
+        <a href="fixes.html" class="btn btn-primary btn-lg">Назад</a>
+    </div>
+
+    <div id="answerNo2" class="hidden">
+        <p>Проверить настройки сети и устранить возможные проблемы.</p>
+        <button class="btn btn-primary btn-lg" onclick="nextStep2()">Далее</button>
+    </div>
+
+    <div id="question3" class="hidden">
+        <p>Потеря все еще есть?</p>
+        <button class="btn btn-primary btn-lg" onclick="handleYes3()">Да</button>
+        <button class="btn btn-primary btn-lg" onclick="handleNo3()">Нет</button>
+    </div>
+
+    <div id="answerYes3" class="hidden">
+        <p>Обратиться в техподдержку.</p>
+        <a href="fixes.html" class="btn btn-primary btn-lg">Назад</a>
+    </div>
+
+    <div id="answerNo3" class="hidden">
+        <p>Проблема решена.</p>
+        <a href="fixes.html" class="btn btn-primary btn-lg">Назад</a>
+    </div>
+</div>
+
+<!-- Подключение Bootstrap JS и зависимости -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function handleYes() {
+        document.getElementById('question1').classList.add('hidden');
+        document.getElementById('answerYes').classList.remove('hidden');
+    }
+
+    function handleNo() {
+        document.getElementById('question1').classList.add('hidden');
+        document.getElementById('answerNo').classList.remove('hidden');
+    }
+
+    function nextStep() {
+        document.getElementById('answerYes').classList.add('hidden');
+        document.getElementById('answerNo').classList.add('hidden');
+        document.getElementById('question2').classList.remove('hidden');
+    }
+
+    function handleYes2() {
+        document.getElementById('question2').classList.add('hidden');
+        document.getElementById('answerYes2').classList.remove('hidden');
+    }
+
+    function handleNo2() {
+        document.getElementById('question2').classList.add('hidden');
+        document.getElementById('answerNo2').classList.remove('hidden');
+    }
+
+    function nextStep2() {
+        document.getElementById('answerNo2').classList.add('hidden');
+        document.getElementById('question3').classList.remove('hidden');
+    }
+
+    function handleYes3() {
+        document.getElementById('question3').classList.add('hidden');
+        document.getElementById('answerYes3').classList.remove('hidden');
+    }
+
+    function handleNo3() {
+        document.getElementById('question3').classList.add('hidden');
+        document.getElementById('answerNo3').classList.remove('hidden');
+    }
+</script>
+</body>
+</html>

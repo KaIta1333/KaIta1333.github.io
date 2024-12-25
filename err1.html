@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Диагностика датчиков</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #e0f7fa, #80deea);
+            color: #004085;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            background-color: #007bff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .info-section {
+            margin-top: 50px;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-container .btn {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn-container .btn:hover {
+            transform: scale(1.05);
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!-- Навбар -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Интерактивное электронное техническое руководство для системы безопастности
+            мастерской</a>
+    </div>
+</nav>
+
+<div class="container text-center btn-container">
+    <h1>Диагностика датчиков</h1>
+    <div id="question1">
+        <p>Задаем вопрос: Датчики настроены корректно?</p>
+        <button class="btn btn-primary btn-lg" onclick="handleQuestion1(true)">Да</button>
+        <button class="btn btn-primary btn-lg" onclick="handleQuestion1(false)">Нет</button>
+    </div>
+
+    <div id="answer1Yes" class="hidden">
+        <p>Убедиться, что зона действия датчиков свободна от посторонних объектов.</p>
+        <button class="btn btn-primary btn-lg" onclick="nextQuestion()">Далее</button>
+    </div>
+
+    <div id="answer1No" class="hidden">
+        <p>Провести настройку для корректной работы.</p>
+        <button class="btn btn-primary btn-lg" onclick="nextQuestion()">Далее</button>
+    </div>
+
+    <div id="question2" class="hidden">
+        <p>Проблема решена?</p>
+        <button class="btn btn-primary btn-lg" onclick="handleQuestion2(true)">Да</button>
+        <button class="btn btn-primary btn-lg" onclick="handleQuestion2(false)">Нет</button>
+    </div>
+
+    <div id="answer2Yes" class="hidden">
+        <p>Проблема решена.</p>
+        <a href="fixes.html" class="btn btn-primary btn-lg">Назад</a>
+    </div>
+
+    <div id="answer2No" class="hidden">
+        <p>Провести диагностику состояния оборудования.</p>
+        <button class="btn btn-primary btn-lg" onclick="nextQuestion2()">Далее</button>
+    </div>
+
+    <div id="question3" class="hidden">
+        <p>Ошибка повторяется?</p>
+        <button class="btn btn-primary btn-lg" onclick="handleQuestion3(true)">Да</button>
+        <button class="btn btn-primary btn-lg" onclick="handleQuestion3(false)">Нет</button>
+    </div>
+
+    <div id="answer3Yes" class="hidden">
+        <p>Обратиться в техподдержку.</p>
+        <a href="fixes.html" class="btn btn-primary btn-lg">Назад</a>
+    </div>
+
+    <div id="answer3No" class="hidden">
+        <p>Проблема решена.</p>
+        <a href="fixes.html" class="btn btn-primary btn-lg">Назад</a>
+    </div>
+</div>
+
+<!-- Подключение Bootstrap JS и зависимости -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function handleQuestion1(answer) {
+        document.getElementById('question1').classList.add('hidden');
+        if (answer) {
+            document.getElementById('answer1Yes').classList.remove('hidden');
+        } else {
+            document.getElementById('answer1No').classList.remove('hidden');
+        }
+    }
+
+    function nextQuestion() {
+        document.getElementById('answer1Yes').classList.add('hidden');
+        document.getElementById('answer1No').classList.add('hidden');
+        document.getElementById('question2').classList.remove('hidden');
+    }
+
+    function handleQuestion2(answer) {
+        document.getElementById('question2').classList.add('hidden');
+        if (answer) {
+            document.getElementById('answer2Yes').classList.remove('hidden');
+        } else {
+            document.getElementById('answer2No').classList.remove('hidden');
+        }
+    }
+
+    function nextQuestion2() {
+        document.getElementById('answer2No').classList.add('hidden');
+        document.getElementById('question3').classList.remove('hidden');
+    }
+
+    function handleQuestion3(answer) {
+        document.getElementById('question3').classList.add('hidden');
+        if (answer) {
+            document.getElementById('answer3Yes').classList.remove('hidden');
+        } else {
+            document.getElementById('answer3No').classList.remove('hidden');
+        }
+    }
+</script>
+</body>
+</html>
